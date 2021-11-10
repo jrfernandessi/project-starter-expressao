@@ -30,7 +30,7 @@ public class UsuarioController {
     @PostMapping("")
     public ResponseEntity<Usuario> create(@RequestBody Usuario usuario) {
         // Cadastrar usuário e retornar usuário cadastrado...
-        return ResponseEntity.ok(usuarioService.save(usuario));
+        return ResponseEntity.ok().build();
     }
 
     //@DeleteMapping("{id}")

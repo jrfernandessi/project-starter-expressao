@@ -17,8 +17,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private PasswordEncoder encoder;
 
     @Override
     public Usuario findByEmail(String email) {
@@ -30,13 +28,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuario save(Usuario usuario){
-        if(findByEmail(usuario.getEmail())==null){
-            usuario.setPassword(encoder.encode(usuario.getPassword()));
-            return usuarioRepository.save(usuario);
-        }else{
-            throw new DataIntegrityException("E-mail já cadastrado");
-        }
-    }
+
 
 }
