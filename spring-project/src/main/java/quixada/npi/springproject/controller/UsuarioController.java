@@ -33,8 +33,11 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.save(usuario));
     }
 
-    //@DeleteMapping("{id}")
-    //TODO: excluir usuário
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        usuarioService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
     // @PutMapping("{id}")
     /*public ResponseEntity<Usuario> update(@RequestBody Usuario usuario) {

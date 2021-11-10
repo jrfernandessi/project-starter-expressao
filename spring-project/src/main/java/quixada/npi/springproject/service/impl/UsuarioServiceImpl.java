@@ -1,10 +1,10 @@
 package quixada.npi.springproject.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import quixada.npi.springproject.exception.DataIntegrityException;
+import quixada.npi.springproject.exception.NotFoundException;
 import quixada.npi.springproject.model.Usuario;
 import quixada.npi.springproject.repository.UsuarioRepository;
 import quixada.npi.springproject.service.UsuarioService;
@@ -36,6 +36,15 @@ public class UsuarioServiceImpl implements UsuarioService {
             return usuarioRepository.save(usuario);
         }else{
             throw new DataIntegrityException("E-mail já cadastrado");
+        }
+    }
+
+    public void delete(Integer id) {
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if(usuario != null){
+            usuarioRepository.delete(usuario);
+        }else{
+            throw new NotFoundException("Usuario não encontrado");
         }
     }
 
