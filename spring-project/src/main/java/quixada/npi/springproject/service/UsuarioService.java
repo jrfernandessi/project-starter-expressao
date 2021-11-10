@@ -10,4 +10,6 @@ public interface UsuarioService {
     Usuario findByEmail(String email);
 
     List<Usuario> findAll();
+
+    Usuario save (Usuario usuario);
 }

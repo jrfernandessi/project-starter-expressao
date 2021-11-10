@@ -28,9 +28,9 @@ public class UsuarioController {
     }
 
     @PostMapping("")
-    public ResponseEntity<List<Usuario>> create(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> create(@RequestBody Usuario usuario) {
         // Cadastrar usuário e retornar usuário cadastrado...
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(usuarioService.save(usuario));
     }
 
     //@DeleteMapping("{id}")

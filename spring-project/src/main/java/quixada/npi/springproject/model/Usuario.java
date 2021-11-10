@@ -28,7 +28,6 @@ public class Usuario implements UserDetails {
 	private String email;
 	
 	@NotEmpty
-	@JsonIgnore
 	private String password;
 
 	private boolean habilitado;
