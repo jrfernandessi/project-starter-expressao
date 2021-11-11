@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import quixada.npi.springproject.model.Curso;
 
 @Repository
-public interface CursoRepository extends JpaRepository<Integer, Curso> {
+public interface CursoRepository extends JpaRepository<Curso, Integer> {
 
 }
