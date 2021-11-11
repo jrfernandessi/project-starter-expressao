@@ -31,6 +31,16 @@ public class Usuario implements UserDetails {
 
 	private boolean habilitado;
 
+	@ManyToOne
+	@JoinColumn(name = "curso_id")
+	private Curso curso;
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	@Enumerated(EnumType.STRING)
+	@CollectionTable(name = "papel_usuario")
+	@Column(name = "papel")
+	private List<Papel> papeis;
+
 	public Usuario() {}
 
 	public Usuario (Integer id, String nome, String email) {
@@ -75,10 +85,25 @@ public class Usuario implements UserDetails {
 		this.habilitado = habilitado;
 	}
 
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	public List<Papel> getPapeis() {
+		return papeis;
+	}
+
+	public void setPapeis(List<Papel> papeis) {
+		this.papeis = papeis;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.emptyList();
-		//return this.papeis;
+		return this.papeis;
 	}
 	
 	@Override

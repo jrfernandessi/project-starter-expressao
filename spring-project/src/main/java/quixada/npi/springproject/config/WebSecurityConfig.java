@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import quixada.npi.springproject.model.Papel;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -38,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/v2/api-docs").permitAll()
                     .antMatchers("/swagger-resources/**").permitAll()
                     .antMatchers("/usuarios").permitAll()
+                    .antMatchers(HttpMethod.POST, "/cursos").hasAnyAuthority(Papel.ADMIN.getAuthority())
+                    .antMatchers(HttpMethod.PUT, "/cursos/*").hasAnyAuthority(Papel.COORDENADOR.getAuthority())
                     .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
