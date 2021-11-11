@@ -32,6 +32,10 @@ public class Usuario implements UserDetails {
 
 	private boolean habilitado;
 
+	@ManyToOne
+	@JoinColumn(name = "curso_id")
+	private Curso curso;
+
 	public Usuario() {}
 
 	public Usuario (Integer id, String nome, String email) {
@@ -114,6 +118,14 @@ public class Usuario implements UserDetails {
 
 	public List<String> getRoles() {
 			return new ArrayList<String>();
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 	@Override
