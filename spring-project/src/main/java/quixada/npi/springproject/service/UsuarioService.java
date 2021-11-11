@@ -1,7 +1,6 @@
 package quixada.npi.springproject.service;
 
 
-import javassist.NotFoundException;
 import quixada.npi.springproject.model.Usuario;
 
 import java.util.List;
